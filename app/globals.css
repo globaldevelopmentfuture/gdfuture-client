@@ -21,9 +21,6 @@ body {
 }
 
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 
 @keyframes scroll {
   0% { transform: translateY(0); opacity: 1; }
