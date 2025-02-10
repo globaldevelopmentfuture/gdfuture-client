@@ -8,7 +8,7 @@ import Link from "next/link";
 const fadeInUp = {
   initial: { opacity: 0, y: 20 },
   animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.6 }
+  transition: { duration: 0.6 },
 };
 
 const valueProps = [
@@ -31,7 +31,7 @@ const valueProps = [
     icon: Users2,
     title: "Strategic Partnership",
     description: "Long-term collaboration for sustainable growth",
-  }
+  },
 ];
 
 export default function HeroSection() {
@@ -57,9 +57,10 @@ export default function HeroSection() {
           playsInline
           className="w-full h-full object-cover opacity-40"
         >
-          <source src="/background.mp4" type="video/mp4" />
+          <source src="/gdfuture-client/background.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
+
         <motion.div
           className="absolute inset-0 bg-gradient-to-r from-yellow-900/40 to-gray-900/40 mix-blend-multiply"
           initial={{ opacity: 0 }}
@@ -105,8 +106,9 @@ export default function HeroSection() {
             animate={fadeInUp.animate}
             transition={{ ...fadeInUp.transition, delay: 0.6 }}
           >
-            We deliver enterprise-grade solutions that empower businesses to lead in the digital era. 
-            Our expertise spans across cloud infrastructure, AI integration, and digital transformation.
+            We deliver enterprise-grade solutions that empower businesses to
+            lead in the digital era. Our expertise spans across cloud
+            infrastructure, AI integration, and digital transformation.
           </motion.p>
 
           {/* Butonul de call-to-action */}
