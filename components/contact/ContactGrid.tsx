@@ -4,7 +4,6 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import ContactForm from './ContactForm';
 import ContactInfo from './ContactInfo';
-import { Sparkles } from 'lucide-react';
 
 export default function ContactGrid() {
   return (

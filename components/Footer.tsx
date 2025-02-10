@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Github, Linkedin, Twitter, MapPin, Mail, Phone, ExternalLink, ArrowUpRight } from 'lucide-react';
+import { Github, Linkedin, Twitter, MapPin, Mail, Phone, ArrowUpRight } from 'lucide-react';
 import Image from 'next/image';
 
 export default function Footer() {

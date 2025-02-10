@@ -34,7 +34,7 @@ export default function HeroContact() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.8 }}
           >
-            <span className="text-white">Let's Start Your </span>
+            <span className="text-white">Let&apos;s Start Your </span>
             <span className="relative">
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-yellow-600">
                 Digital Journey
@@ -54,7 +54,7 @@ export default function HeroContact() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.8 }}
           >
-            Have a project in mind? We'd love to hear about it. Let's create something 
+            Have a project in mind? We&apos;d love to hear about it. Let&apos;s create something 
             extraordinary together that drives your business forward.
           </motion.p>
 

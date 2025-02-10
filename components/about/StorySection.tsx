@@ -52,7 +52,7 @@ export default function StorySection() {
             transition={{ duration: 0.8 }}
           >
             <h2 className="text-3xl sm:text-4xl font-bold text-white mb-8">
-              Building Tomorrow's
+              Building Tomorrow&apos;s
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-yellow-600">
                 {" "}Digital Solutions{" "}
               </span>
@@ -67,7 +67,7 @@ export default function StorySection() {
                 of all sizes.
               </p>
               <p className="leading-relaxed">
-                Today, we're proud to have helped numerous organizations achieve their digital 
+                Today, we&apos;re proud to have helped numerous organizations achieve their digital 
                 ambitions, creating solutions that not only meet current needs but are built 
                 to evolve with future technologies.
               </p>

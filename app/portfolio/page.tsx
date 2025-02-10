@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { Code2, Smartphone, Globe, Database, Sparkles } from "lucide-react";
+import { Code2, Smartphone, Globe, Database} from "lucide-react";
 import ProjectsGrid from "@/components/portfolio/ProjectsGrid";
 import CTASection from "@/components/CTASection";
 import HeroProject from "@/components/portfolio/HeroProject";

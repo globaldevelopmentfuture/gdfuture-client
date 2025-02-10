@@ -40,7 +40,7 @@ const HeroSection = () => {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, delay: 0.3 }}
     >
-      Explore our latest work and discover how we've helped businesses
+      Explore our latest work and discover how we&apos;ve helped businesses
       achieve their digital transformation goals
     </motion.p>
   </motion.div>

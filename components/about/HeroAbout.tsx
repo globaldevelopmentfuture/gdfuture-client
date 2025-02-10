@@ -52,7 +52,7 @@ export default function HeroAbout() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.8 }}
           >
-            We're a team of passionate innovators, dedicated to transforming businesses 
+            We&apos;re a team of passionate innovators, dedicated to transforming businesses 
             through cutting-edge technology and creative excellence
           </motion.p>
 

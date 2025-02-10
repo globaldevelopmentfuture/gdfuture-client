@@ -13,7 +13,6 @@ import {
   Search,
   BarChart3,
   Users,
-  ArrowRight,
   CheckCircle
 } from 'lucide-react';
 
@@ -104,7 +103,6 @@ const services = [
 
 export default function ServicesGrid() {
   const [activeCategory, setActiveCategory] = useState("IT Solutions");
-  const [hoveredService, setHoveredService] = useState<number | null>(null);
 
   return (
     <motion.section 
@@ -173,8 +171,6 @@ export default function ServicesGrid() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                onHoverStart={() => setHoveredService(index)}
-                onHoverEnd={() => setHoveredService(null)}
                 whileHover={{ y: -5 }}
               >
                 <div className="relative h-full overflow-hidden rounded-2xl bg-black/40 backdrop-blur-sm border border-white/5 p-8">

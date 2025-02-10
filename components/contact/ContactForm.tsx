@@ -32,7 +32,7 @@ export default function ContactForm() {
             transition={{ duration: 0.5 }}
           >
             <h2 className="text-3xl font-bold text-white mb-2">Send us a Message</h2>
-            <p className="text-gray-400 mb-8">Fill out the form below and we'll get back to you shortly.</p>
+            <p className="text-gray-400 mb-8">Fill out the form below and we&apos;ll get back to you shortly.</p>
           </motion.div>
 
           <form className="space-y-6">

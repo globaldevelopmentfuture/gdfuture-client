@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Code2, Sparkles } from 'lucide-react';
+import { Code2} from 'lucide-react';
 
 const technologies = [
   { name: "Java", gradient: "from-red-400 to-red-600" },
