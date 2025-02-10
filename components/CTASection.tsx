@@ -51,7 +51,7 @@ export default function CTASection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
           >
-            Let's collaborate to create innovative solutions that drive your
+            Let&apos;s collaborate to create innovative solutions that drive your
             business forward. Our team of experts is ready to bring your vision
             to life.
           </motion.p>

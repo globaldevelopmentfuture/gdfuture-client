@@ -96,7 +96,7 @@ export default function AboutSection() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
             >
-              With over a decade of experience in enterprise solutions, we've established 
+              With over a decade of experience in enterprise solutions, we&apos;ve established 
               ourselves as leaders in digital transformation. Our commitment to innovation 
               and technical excellence enables us to deliver sophisticated solutions that 
               drive business growth and efficiency.

@@ -68,7 +68,7 @@ export default function Footer() {
                 { icon: Github, label: "GitHub" },
                 { icon: Linkedin, label: "LinkedIn" },
                 { icon: Twitter, label: "Twitter" }
-              ].map((social, index) => (
+              ].map((social) => (
                 <motion.a
                   key={social.label}
                   href="#"
