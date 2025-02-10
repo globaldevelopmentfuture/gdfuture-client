@@ -113,6 +113,41 @@ export default function ServicesGrid() {
       animate={{ opacity: 1 }}
       transition={{ duration: 0.8 }}
     >
+       <motion.div
+            className="flex flex-wrap justify-center gap-4 mb-16"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+          >
+            <div className="bg-white/5 backdrop-blur-sm p-1.5 rounded-2xl border border-white/10">
+              <div className="flex flex-col sm:flex-row gap-2">
+                {services.map((category) => (
+                  <motion.button
+                    key={category.category}
+                    onClick={() => setActiveCategory(category.category)}
+                    className="relative px-6 py-3 rounded-xl transition-all duration-300 w-full sm:w-auto"
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    {activeCategory === category.category && (
+                      <motion.div
+                        className="absolute inset-0 bg-gradient-to-r from-yellow-400 to-yellow-600 rounded-xl"
+                        layoutId="activeCategory"
+                        transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                      />
+                    )}
+                    <span className={`relative z-10 font-medium ${
+                      activeCategory === category.category
+                        ? "text-gray-900"
+                        : "text-gray-400 hover:text-white"
+                    }`}>
+                      {category.category}
+                    </span>
+                  </motion.button>
+                ))}
+              </div>
+            </div>
+          </motion.div>
       <div className="container mx-auto px-4 relative z-10 max-w-7xl">
       
 

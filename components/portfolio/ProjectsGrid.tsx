@@ -41,7 +41,7 @@ export default function ProjectsGrid({ projects, activeTab }: ProjectsGridProps)
       initial="hidden"
       animate="show"
     >
-      <AnimatePresence mode="wait">
+      <AnimatePresence>
         {filteredProjects.length > 0 ? (
           filteredProjects.map((project, index) => (
             <ProjectCard
