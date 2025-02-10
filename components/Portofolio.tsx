@@ -1,6 +1,7 @@
+"use client";
 import React, { useState } from "react";
-import { ExternalLink } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
+import ProjectsGrid from "./portfolio/ProjectsGrid";
 
 const portfolioItems = [
   {
@@ -42,24 +43,18 @@ const portfolioItems = [
     category: "fullstack",
     tech: ["Next.js", "Java", "Kubernetes", "AWS"],
     link: "#",
-  }
+  },
 ];
 
 const tabs = [
   { id: "all", label: "All Projects" },
   { id: "fullstack", label: "Full Stack" },
   { id: "web", label: "Web Apps" },
-  { id: "mobile", label: "Mobile" }
+  { id: "mobile", label: "Mobile" },
 ];
-
-const itemVariants = {
-  hidden: { y: 20, opacity: 0 },
-  visible: { y: 0, opacity: 1 }
-};
 
 export default function Portfolio() {
   const [activeTab, setActiveTab] = useState("all");
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   return (
     <motion.section
@@ -69,10 +64,8 @@ export default function Portfolio() {
       animate={{ opacity: 1 }}
       transition={{ duration: 0.8 }}
     >
-      
-
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 max-w-7xl">
-        {/* Titlu și descriere */}
+        {/* Title & Description */}
         <motion.div
           className="text-center mb-16"
           initial={{ opacity: 0, y: 20 }}
@@ -114,7 +107,7 @@ export default function Portfolio() {
             focusing on scalability, performance, and user experience
           </motion.p>
 
-          {/* Bara de selecție (tabs) – varianta inițială cu text calibrat */}
+          {/* Tabs */}
           <motion.div
             className="flex flex-wrap justify-center gap-3 mb-16"
             initial={{ opacity: 0, y: 20 }}
@@ -154,96 +147,7 @@ export default function Portfolio() {
           </motion.div>
         </motion.div>
 
-        {/* Grid-ul de proiecte */}
-        <motion.div
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
-          initial="hidden"
-          animate="visible"
-          variants={{
-            visible: {
-              transition: {
-                staggerChildren: 0.1,
-              },
-            },
-          }}
-        >
-          <AnimatePresence>
-            {portfolioItems
-              .filter(
-                (item) => activeTab === "all" || item.category === activeTab
-              )
-              .map((project, index) => (
-                <motion.div
-                  key={project.title}
-                  variants={itemVariants}
-                  className="group relative"
-                  onHoverStart={() => setHoveredIndex(index)}
-                  onHoverEnd={() => setHoveredIndex(null)}
-                  onTapStart={() => setHoveredIndex(index)}
-                  onTap={() => setHoveredIndex(null)}
-                  whileHover={{ y: -5 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <div className="relative overflow-hidden rounded-2xl bg-gray-900/20 backdrop-blur-sm border border-white/10">
-                    <div className="absolute inset-0 bg-gradient-to-br from-yellow-400 to-yellow-600 opacity-0 group-hover:opacity-10 transition-opacity duration-500" />
-
-                    <motion.img
-                      src={project.image}
-                      alt={project.title}
-                      className="w-full h-[250px] sm:h-[300px] md:h-[400px] object-cover transition-all duration-500"
-                      initial={false}
-                      animate={
-                        hoveredIndex === index
-                          ? { scale: 1.05, filter: "brightness(0.5)" }
-                          : { scale: 1, filter: "brightness(0.8)" }
-                      }
-                    />
-
-                    <motion.div
-                      className="absolute inset-0 p-4 sm:p-8 flex flex-col justify-end"
-                      initial={false}
-                      animate={
-                        hoveredIndex === index
-                          ? { y: 0, opacity: 1 }
-                          : { y: 20, opacity: 0 }
-                      }
-                      transition={{ duration: 0.3 }}
-                    >
-                      <div className="relative z-10 space-y-2 sm:space-y-4">
-                        <h3 className="text-lg sm:text-2xl font-bold text-white">
-                          {project.title}
-                        </h3>
-
-                        <p className="text-xs sm:text-sm text-gray-300 line-clamp-2">
-                          {project.description}
-                        </p>
-
-                        <div className="flex flex-wrap gap-1">
-                          {project.tech.map((tech, techIndex) => (
-                            <span
-                              key={techIndex}
-                              className="px-2 py-0.5 bg-yellow-500/20 rounded-full text-xs sm:text-sm text-yellow-300 backdrop-blur-sm border border-yellow-500/20"
-                            >
-                              {tech}
-                            </span>
-                          ))}
-                        </div>
-
-                        <motion.a
-                          href={project.link}
-                          className="inline-flex items-center text-xs sm:text-sm text-white font-medium bg-yellow-500/20 px-3 py-1 rounded-xl hover:bg-yellow-500/30 transition-all duration-300"
-                          whileHover={{ x: 5 }}
-                        >
-                          View Project 
-                          <ExternalLink className="ml-1 w-3 h-3 transition-transform" />
-                        </motion.a>
-                      </div>
-                    </motion.div>
-                  </div>
-                </motion.div>
-              ))}
-          </AnimatePresence>
-        </motion.div>
+        <ProjectsGrid projects={portfolioItems} activeTab={activeTab} />
       </div>
     </motion.section>
   );

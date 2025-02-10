@@ -10,7 +10,6 @@ interface Project {
   image: string;
   description: string;
   tech: string[];
-  gradient: string;
 }
 
 interface ProjectsGridProps {
@@ -26,7 +25,7 @@ export default function ProjectsGrid({ projects, activeTab }: ProjectsGridProps)
     show: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1,
+        staggerChildren: 0.05,
       },
     },
   };
@@ -59,6 +58,7 @@ export default function ProjectsGrid({ projects, activeTab }: ProjectsGridProps)
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
           >
             <p className="text-gray-400 text-lg">No projects found in this category.</p>
           </motion.div>

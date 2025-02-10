@@ -13,7 +13,8 @@ import {
   Search,
   BarChart3,
   Users,
-  CheckCircle
+  CheckCircle,
+  Zap
 } from 'lucide-react';
 
 const services = [
@@ -103,6 +104,7 @@ const services = [
 
 export default function ServicesGrid() {
   const [activeCategory, setActiveCategory] = useState("IT Solutions");
+  const [hoveredService, setHoveredService] = useState<number | null>(null);
 
   return (
     <motion.section 
@@ -111,57 +113,16 @@ export default function ServicesGrid() {
       animate={{ opacity: 1 }}
       transition={{ duration: 0.8 }}
     >
-   
-
       <div className="container mx-auto px-4 relative z-10 max-w-7xl">
-        {/* Category Tabs */}
-        <motion.div 
-          className="flex flex-col items-center mb-16"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-        >
-          <div className="bg-white/5 backdrop-blur-sm p-1.5 rounded-2xl border border-white/10 w-full max-w-lg">
-            <div className="grid grid-cols-2 gap-2">
-              {services.map((category) => (
-                <motion.button
-                  key={category.category}
-                  onClick={() => setActiveCategory(category.category)}
-                  className="relative px-6 py-3 rounded-xl text-sm font-medium transition-all duration-300"
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  {activeCategory === category.category && (
-                    <motion.div
-                      className="absolute inset-0 bg-gradient-to-r from-yellow-400 to-yellow-600 rounded-xl"
-                      layoutId="activeCategory"
-                      transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                    />
-                  )}
-                  <span className={`relative z-10 ${
-                    activeCategory === category.category
-                      ? "text-gray-900"
-                      : "text-gray-400 hover:text-white"
-                  }`}>
-                    {category.category}
-                  </span>
-                </motion.button>
-              ))}
-            </div>
-          </div>
-          
-          <motion.p
-            className="text-gray-400 mt-6 text-center max-w-2xl"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5 }}
-          >
-            {services.find(c => c.category === activeCategory)?.description}
-          </motion.p>
-        </motion.div>
+      
 
         {/* Services Grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+        <motion.div
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.5 }}
+        >
           {services
             .find(category => category.category === activeCategory)
             ?.items.map((service, index) => (
@@ -171,14 +132,20 @@ export default function ServicesGrid() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                whileHover={{ y: -5 }}
+                onHoverStart={() => setHoveredService(index)}
+                onHoverEnd={() => setHoveredService(null)}
+                whileHover={{ y: -8 }}
               >
-                <div className="relative h-full overflow-hidden rounded-2xl bg-black/40 backdrop-blur-sm border border-white/5 p-8">
+                <motion.div
+                  className="relative h-full overflow-hidden rounded-2xl bg-black/40 backdrop-blur-sm border border-white/5 p-8"
+                  whileHover={{ scale: 1.02 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 25 }}
+                >
                   <motion.div
-                    className={`absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-500`}
+                    className={`absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-0 group-hover:opacity-10`}
                     initial={false}
-                    animate={{ opacity: [0.05, 0.1, 0.05] }}
-                    transition={{ duration: 4, repeat: Infinity }}
+                    animate={hoveredService === index ? { opacity: 0.15, scale: 1.2 } : { opacity: 0, scale: 1 }}
+                    transition={{ duration: 0.8 }}
                   />
                   
                   <div className="relative z-10">
@@ -194,7 +161,7 @@ export default function ServicesGrid() {
                       </div>
                     </motion.div>
                     
-                    <h3 className={`text-xl font-semibold mb-4 text-transparent bg-clip-text bg-gradient-to-r ${service.gradient}`}>
+                    <h3 className="text-xl font-semibold text-white mb-4 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-yellow-200 group-hover:to-yellow-400">
                       {service.title}
                     </h3>
                     
@@ -211,19 +178,42 @@ export default function ServicesGrid() {
                           animate={{ opacity: 1, x: 0 }}
                           transition={{ delay: 0.1 * idx }}
                         >
-                          <CheckCircle className={`w-4 h-4 mr-2 text-transparent bg-clip-text bg-gradient-to-r ${service.gradient}`} />
+                          <CheckCircle className="w-4 h-4 mr-2 text-yellow-400" />
                           {feature}
                         </motion.li>
                       ))}
                     </ul>
-
-
-                 
                   </div>
-                </div>
+
+                  <motion.div
+                    className={`absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r ${service.gradient}`}
+                    initial={{ scaleX: 0 }}
+                    whileHover={{ scaleX: 1 }}
+                    transition={{ duration: 0.5 }}
+                  />
+                </motion.div>
               </motion.div>
             ))}
-        </div>
+        </motion.div>
+
+        {/* Innovation Badge */}
+        <motion.div
+          className="mt-16 text-center"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.6 }}
+        >
+          <motion.div
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-yellow-500/10 border border-yellow-500/30 backdrop-blur-sm"
+            whileHover={{ scale: 1.05 }}
+            transition={{ type: "spring", stiffness: 400, damping: 17 }}
+          >
+            <Zap className="w-4 h-4 text-yellow-400" />
+            <span className="text-yellow-300 text-sm font-medium">
+              Innovative Solutions for Modern Businesses
+            </span>
+          </motion.div>
+        </motion.div>
       </div>
     </motion.section>
   );

@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ExternalLink } from 'lucide-react';
+import { ExternalLink, ArrowRight } from 'lucide-react';
 
 interface ProjectCardProps {
   project: {
@@ -10,7 +10,6 @@ interface ProjectCardProps {
     description: string;
     image: string;
     tech: string[];
-    gradient: string;
   };
   index: number;
   hoveredIndex: number | null;
@@ -24,89 +23,107 @@ export default function ProjectCard({ project, index, hoveredIndex, setHoveredIn
       onHoverStart={() => setHoveredIndex(index)}
       onHoverEnd={() => setHoveredIndex(null)}
       whileHover={{ y: -5 }}
-      transition={{ duration: 0.3 }}
+      transition={{ duration: 0.2 }}
       layout
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
     >
-      <div className="relative overflow-hidden rounded-2xl bg-black/40 backdrop-blur-sm border border-white/5">
-        <motion.div
-          className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-500`}
-          initial={false}
-          animate={{ opacity: [0.05, 0.1, 0.05] }}
-          transition={{ duration: 4, repeat: Infinity }}
-        />
+      <div className="relative overflow-hidden rounded-3xl bg-black/40 backdrop-blur-sm border border-white/10">
+        {/* Image Container */}
+        <div className="relative h-[250px] overflow-hidden">
+          <motion.div
+            className="absolute inset-0 bg-yellow-400/20 mix-blend-overlay opacity-0 group-hover:opacity-100 transition-all duration-300"
+            initial={false}
+            animate={hoveredIndex === index ? { opacity: 0.4 } : { opacity: 0 }}
+          />
+          
+          <motion.img
+            src={project.image}
+            alt={project.title}
+            className="w-full h-full object-cover transition-all duration-300"
+            initial={false}
+            animate={hoveredIndex === index ? { scale: 1.05 } : { scale: 1 }}
+            transition={{ duration: 0.3 }}
+          />
 
-        <motion.img
-          src={project.image}
-          alt={project.title}
-          className="w-full h-[300px] object-cover opacity-90 group-hover:opacity-60 transition-opacity duration-500"
-          initial={false}
-          animate={hoveredIndex === index ? { scale: 1.05 } : { scale: 1 }}
-          transition={{ duration: 0.6 }}
-        />
+          {/* Category Badge */}
+          <div className="absolute top-4 left-4">
+            <motion.div
+              className="px-3 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/10"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 }}
+            >
+              <span className="text-xs font-medium text-yellow-400">Featured Project</span>
+            </motion.div>
+          </div>
+        </div>
 
-        <motion.div
-          className="absolute inset-0 p-8 flex flex-col justify-end"
-          initial={false}
-          animate={hoveredIndex === index ? { y: 0, opacity: 1 } : { y: 20, opacity: 0 }}
-          transition={{ duration: 0.3 }}
-        >
-          <div className="relative z-10 space-y-4">
+        {/* Content Container */}
+        <div className="relative p-6">
+          {/* Title and Description */}
+          <div className="space-y-3">
             <motion.h3
-              className={`text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r ${project.gradient}`}
+              className="text-xl font-semibold tracking-tight text-white group-hover:text-yellow-400 transition-colors duration-300"
               initial={false}
-              animate={hoveredIndex === index ? { y: 0, opacity: 1 } : { y: 20, opacity: 0 }}
-              transition={{ duration: 0.3, delay: 0.1 }}
             >
               {project.title}
             </motion.h3>
 
             <motion.p
-              className="text-gray-300"
+              className="text-sm text-gray-400 leading-relaxed"
               initial={false}
-              animate={hoveredIndex === index ? { y: 0, opacity: 1 } : { y: 20, opacity: 0 }}
-              transition={{ duration: 0.3, delay: 0.2 }}
             >
               {project.description}
             </motion.p>
+          </div>
 
-            <motion.div
-              className="flex flex-wrap gap-2"
-              initial={false}
-              animate={hoveredIndex === index ? { y: 0, opacity: 1 } : { y: 20, opacity: 0 }}
-              transition={{ duration: 0.3, delay: 0.3 }}
-            >
-              {project.tech.map((tech, tIndex) => (
-                <span
-                  key={tIndex}
-                  className={`px-3 py-1 bg-gradient-to-br ${project.gradient} bg-opacity-10 rounded-full text-white text-sm backdrop-blur-sm border border-white/10`}
-                >
-                  {tech}
-                </span>
-              ))}
-            </motion.div>
+          {/* Tech Stack */}
+          <motion.div
+            className="flex flex-wrap gap-2 mt-4"
+            initial={false}
+          >
+            {project.tech.map((tech, tIndex) => (
+              <span
+                key={tIndex}
+                className="px-2.5 py-1 text-[10px] font-medium uppercase tracking-wider bg-white/5 rounded-md text-yellow-400/90 border border-yellow-400/20"
+              >
+                {tech}
+              </span>
+            ))}
+          </motion.div>
 
+          {/* Action Button */}
+          <motion.div
+            className="mt-6 flex items-center justify-between"
+            initial={false}
+          >
             <motion.a
               href="#"
-              className="inline-flex items-center text-white font-medium group/btn"
-              initial={false}
-              animate={hoveredIndex === index ? { y: 0, opacity: 1 } : { y: 20, opacity: 0 }}
-              transition={{ duration: 0.3, delay: 0.4 }}
+              className="inline-flex items-center space-x-2 text-sm font-medium text-white hover:text-yellow-400 transition-colors duration-300 group/btn"
               whileHover={{ x: 5 }}
             >
-              View Project
-              <ExternalLink className="ml-2 w-4 h-4 transition-transform group-hover/btn:translate-x-1" />
+              <span>View Project</span>
+              <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover/btn:translate-x-1" />
             </motion.a>
-          </div>
-        </motion.div>
 
+            <motion.div
+              className="w-8 h-8 rounded-full flex items-center justify-center bg-white/5 border border-white/10 text-yellow-400 hover:bg-yellow-400/10 transition-colors duration-300"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <ExternalLink className="w-4 h-4" />
+            </motion.div>
+          </motion.div>
+        </div>
+
+        {/* Hover Effect Line */}
         <motion.div
-          className={`absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r ${project.gradient}`}
+          className="absolute bottom-0 left-0 right-0 h-[2px] bg-yellow-400"
           initial={{ scaleX: 0 }}
-          whileHover={{ scaleX: 1 }}
-          transition={{ duration: 0.5 }}
+          animate={hoveredIndex === index ? { scaleX: 1 } : { scaleX: 0 }}
+          transition={{ duration: 0.3 }}
         />
       </div>
     </motion.div>

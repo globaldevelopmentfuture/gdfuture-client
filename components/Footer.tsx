@@ -4,6 +4,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Github, Linkedin, Twitter, MapPin, Mail, Phone, ArrowUpRight } from 'lucide-react';
 import Image from 'next/image';
+import logo from '@/public/logo.png';
 
 export default function Footer() {
   const containerVariants = {
@@ -44,13 +45,8 @@ export default function Footer() {
           <motion.div className="lg:col-span-5" variants={itemVariants}>
             <div className="flex items-center space-x-3 mb-8">
               <div className="relative w-12 h-12">
-                <Image 
-                  src="/logo.png" 
-                  alt="GDFUTURE" 
-                  width={48} 
-                  height={48}
-                  className="object-contain"
-                />
+              <Image src={logo} alt="GDFUTURE" width={64} height={64} />
+
               </div>
               <div>
                 <h3 className="text-white font-bold text-xl tracking-tight">GDFUTURE</h3>

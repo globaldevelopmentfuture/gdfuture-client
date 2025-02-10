@@ -9,41 +9,33 @@ const features = [
     icon: Brain,
     title: "Strategic Innovation",
     description: "Driving digital transformation through advanced solutions",
-    theme: {
-      primary: "from-blue-500 to-indigo-600",
-      accent: "blue-500",
-      hover: "blue-400"
-    }
+    gradient: "from-blue-400 to-indigo-600",
+    iconColor: "text-blue-400",
+    titleColor: "text-blue-400"
   },
   {
     icon: Cpu,
     title: "Technical Excellence",
     description: "Cutting-edge technology implementation",
-    theme: {
-      primary: "from-violet-500 to-purple-600",
-      accent: "violet-500",
-      hover: "violet-400"
-    }
+    gradient: "from-violet-400 to-purple-600",
+    iconColor: "text-violet-400",
+    titleColor: "text-violet-400"
   },
   {
     icon: Shield,
     title: "Enterprise Security",
     description: "Advanced protection for critical systems",
-    theme: {
-      primary: "from-emerald-500 to-teal-600",
-      accent: "emerald-500",
-      hover: "emerald-400"
-    }
+    gradient: "from-emerald-400 to-teal-600",
+    iconColor: "text-emerald-400",
+    titleColor: "text-emerald-400"
   },
   {
     icon: Gauge,
     title: "High Performance",
     description: "Optimized solutions for maximum efficiency",
-    theme: {
-      primary: "from-amber-500 to-orange-600",
-      accent: "amber-500",
-      hover: "amber-400"
-    }
+    gradient: "from-amber-400 to-orange-600",
+    iconColor: "text-amber-400",
+    titleColor: "text-amber-400"
   },
 ];
 
@@ -56,8 +48,6 @@ export default function AboutSection() {
       animate={{ opacity: 1 }}
       transition={{ duration: 0.8 }}
     >
-      
-
       <div className="container mx-auto px-4 relative z-10 max-w-7xl">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <motion.div
@@ -118,21 +108,21 @@ export default function AboutSection() {
                   whileHover={{ y: -5 }}
                 >
                   <div className="relative overflow-hidden rounded-xl bg-black/40 backdrop-blur-sm border border-white/5">
-                    <div className={`absolute inset-0 bg-gradient-to-br ${feature.theme.primary} opacity-0 group-hover:opacity-10 transition-opacity duration-500`} />
+                    <div className={`absolute inset-0 bg-gradient-to-br ${feature.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-300`} />
                     <div className="p-6">
                       <div className="mb-4 relative">
-                        <div className={`absolute inset-0 bg-${feature.theme.accent}/20 blur-xl rounded-full`} />
-                        <div className={`relative bg-gradient-to-br ${feature.theme.primary} bg-opacity-10 w-12 h-12 rounded-xl flex items-center justify-center`}>
-                          <feature.icon className={`w-6 h-6 text-${feature.theme.hover}`} />
+                        <div className={`absolute inset-0 bg-gradient-to-br ${feature.gradient} opacity-20 blur-xl rounded-full`} />
+                        <div className={`relative w-12 h-12 rounded-xl flex items-center justify-center bg-gradient-to-br ${feature.gradient}`}>
+                          <feature.icon className="w-6 h-6 text-white" />
                         </div>
                       </div>
-                      <h3 className={`text-${feature.theme.hover} font-semibold text-lg mb-2 transition-colors duration-300`}>
+                      <h3 className={`font-semibold text-lg mb-2 transition-colors duration-300 ${feature.titleColor} group-hover:text-white`}>
                         {feature.title}
                       </h3>
-                      <p className="text-gray-400 text-sm leading-relaxed">
+                      <p className="text-gray-400 text-sm leading-relaxed group-hover:text-gray-300">
                         {feature.description}
                       </p>
-                      <div className={`absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r ${feature.theme.primary} transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left`} />
+                      <div className={`absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r ${feature.gradient} transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left`} />
                     </div>
                   </div>
                 </motion.div>

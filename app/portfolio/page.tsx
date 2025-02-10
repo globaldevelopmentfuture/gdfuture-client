@@ -36,7 +36,6 @@ const projects = [
     description:
       "Feature-rich mobile application for seamless inventory management and order processing.",
     tech: ["React Native", "Spring Boot", "MySQL", "AWS EKS"],
-    gradient: "from-emerald-500 to-teal-600",
   },
   {
     title: "DevOps Dashboard",
@@ -46,7 +45,6 @@ const projects = [
     description:
       "Comprehensive monitoring and deployment management system for microservices architecture.",
     tech: ["Next.js", "Java", "Kubernetes", "AWS"],
-    gradient: "from-amber-500 to-orange-600",
   },
   {
     title: "AI-Powered Analytics Platform",
@@ -56,7 +54,6 @@ const projects = [
     description:
       "Advanced analytics platform leveraging machine learning for predictive insights.",
     tech: ["Python", "TensorFlow", "React", "AWS"],
-    gradient: "from-pink-500 to-rose-600",
   },
   {
     title: "Healthcare Management System",
@@ -66,7 +63,6 @@ const projects = [
     description:
       "Comprehensive healthcare platform for patient management and medical records.",
     tech: ["Next.js", "Node.js", "PostgreSQL", "Docker"],
-    gradient: "from-cyan-500 to-blue-600",
   },
 ];
 
@@ -97,7 +93,7 @@ export default function Portfolio() {
             className="flex flex-wrap justify-center gap-3 mb-16"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
+            transition={{ duration: 0.8, delay: 0.5 }}
           >
             <div className="bg-white/5 backdrop-blur-sm p-1.5 rounded-2xl border border-white/10">
               <div className="flex gap-1">
@@ -105,7 +101,7 @@ export default function Portfolio() {
                   <motion.button
                     key={tab.id}
                     onClick={() => setActiveTab(tab.id)}
-                    className="relative px-6 py-2.5 rounded-xl transition-all duration-300 font-medium text-sm flex items-center gap-2"
+                    className="relative px-4 md:px-6 py-2 text-xs md:text-sm rounded-xl transition-all duration-300 font-medium"
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                   >
@@ -113,19 +109,13 @@ export default function Portfolio() {
                       <motion.div
                         className="absolute inset-0 bg-gradient-to-r from-yellow-400 to-yellow-600 rounded-xl"
                         layoutId="activeTab"
-                        transition={{
-                          type: "spring",
-                          stiffness: 300,
-                          damping: 30,
-                          duration: 0.3,
-                        }}
+                        transition={{ type: "spring", stiffness: 300, damping: 30 }}
                       />
                     )}
-                    <span className="relative z-10">{tab.icon}</span>
                     <span
                       className={`relative z-10 ${
                         activeTab === tab.id
-                          ? "text-gray-900"
+                          ? "text-white"
                           : "text-gray-400 hover:text-white"
                       }`}
                     >
